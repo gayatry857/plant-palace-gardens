@@ -33,6 +33,10 @@
       // WhatsApp number: digits only, country code first, no + or spaces.
       WHATSAPP_NUMBER: "918590481440",
 
+      // Malayalam view: switched off for now (English only, no language button).
+      // Set to true to show the language button in the header again. All Malayalam text is still in the page.
+      ENABLE_MALAYALAM: false,
+
       // TODO: full URL of the Facebook page
       FACEBOOK_URL: "https://www.facebook.com/plantpalacegardens",
 
@@ -64,7 +68,7 @@
   <header class="site-header">
     <div class="wrap header-row">
       <a class="brand" href="#top" aria-label="Plant Palace Gardens, home">
-        <img class="brand-logo" src="images/logo-mark.png" alt="" width="48" height="47" onerror="this.hidden=true">
+        <img class="brand-logo" src="images/logo-mark.png" alt="" width="89" height="40" onerror="this.hidden=true">
         <span class="brand-text">
           <span class="brand-name">Plant Palace Gardens</span>
           <span class="label">Aranmula, Kerala</span>
@@ -72,8 +76,8 @@
       </a>
 
       <div class="header-actions">
-        <!-- Language switch: English by default. The button shows the language you can switch TO. -->
-        <button class="lang-toggle" id="lang-toggle" type="button" lang="ml" aria-label="View this site in Malayalam">മലയാളം</button>
+        <!-- Language switch: hidden for now. Set ENABLE_MALAYALAM to true in SITE_CONFIG to bring it back. -->
+        <button class="lang-toggle" id="lang-toggle" type="button" lang="ml" hidden aria-label="View this site in Malayalam">മലയാളം</button>
         <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
           <span class="bars" aria-hidden="true"></span>
         </button>
@@ -94,7 +98,7 @@
     <!-- HERO -->
     <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="wrap hero-inner">
-        <img class="hero-logo" src="images/logo-full.png" alt="Plant Palace Gardens logo: a garden pavilion with an arched gold frame, surrounded by palms, ferns and potted plants" width="280" height="304" onerror="this.hidden=true">
+        <img class="hero-logo" src="images/logo-full.png" alt="Plant Palace Gardens logo: a traditional Kerala tiled-roof building framed by banana and palm leaves" width="640" height="391" onerror="this.hidden=true">
         <div class="hero-text">
         <p class="label">Aranmula, Kerala</p>
         <h1 id="hero-title">
@@ -229,6 +233,28 @@
   <a class="wa-float" data-wa href="#" aria-label="Message Plant Palace Gardens on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
   </a>
+
+  <!-- Plant detail pop-up. Filled in by app.js when a plant card is clicked. -->
+  <dialog class="plant-dialog" id="plant-dialog" aria-labelledby="pd-title">
+    <button class="pd-close" type="button" id="pd-close" aria-label="Close">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" fill="none"/></svg>
+    </button>
+    <div class="pd-media"><img id="pd-img" alt="" width="640" height="480"></div>
+    <div class="pd-body">
+      <p class="pd-badge" id="pd-badge" hidden>In stock now</p>
+      <h3 id="pd-title"></h3>
+      <p class="pd-ml" id="pd-ml-name" lang="ml"></p>
+      <p id="pd-desc"></p>
+      <p class="pd-desc-ml" id="pd-desc-ml" lang="ml"></p>
+      <div class="cta-row">
+        <a class="btn btn-primary" id="pd-ask" href="#" target="_blank" rel="noopener">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
+          <span>Ask about this on WhatsApp</span>
+        </a>
+        <button class="btn btn-ghost" type="button" id="pd-close-2"><span>Close</span></button>
+      </div>
+    </div>
+  </dialog>
 
   <script src="app.js"></script>
 </body>

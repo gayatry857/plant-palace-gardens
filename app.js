@@ -100,9 +100,14 @@ var STOCK = [
 
       var body = el("div", "card-body");
       var h3 = el("h3");
+      var open = el("button", "card-open");
+      open.type = "button";
+      open.setAttribute("aria-haspopup", "dialog");
+      open.setAttribute("data-open", String(STOCK.indexOf(item)));
       var ml = el("span", "ml", item.ml); ml.lang = "ml";
-      h3.appendChild(ml);
-      h3.appendChild(el("span", "en", item.en));
+      open.appendChild(ml);
+      open.appendChild(el("span", "en", item.en));
+      h3.appendChild(open);
       body.appendChild(h3);
       var p1 = el("p", "ml", item.descMl); p1.lang = "ml";
       body.appendChild(p1);
@@ -123,6 +128,56 @@ var STOCK = [
     });
   }
 
+  /* ---- Plant pop-up ---- */
+  function askMessage(item) {
+    return lang === "ml"
+      ? "ഹലോ, " + item.ml + " (" + item.en + ") ലഭ്യമാണോ? / Hello, is " + item.en + " available?"
+      : "Hello, is " + item.en + " available?";
+  }
+
+  function setupDialog() {
+    var dlg = document.getElementById("plant-dialog");
+    var grid = document.getElementById("stock-grid");
+    if (!dlg || !grid) return;
+    var lastTrigger = null;
+    function $(id) { return document.getElementById(id); }
+
+    function openItem(i, trigger) {
+      var item = STOCK[i];
+      lastTrigger = trigger;
+      $("pd-title").textContent = item.en;
+      $("pd-ml-name").textContent = item.ml;
+      $("pd-desc").textContent = item.descEn;
+      $("pd-desc-ml").textContent = item.descMl;
+      $("pd-badge").hidden = !item.available;
+      var img = $("pd-img");
+      img.hidden = false;
+      img.alt = item.alt;
+      img.onerror = function () { img.hidden = true; };
+      img.src = item.image;
+      $("pd-ask").href = waLink(askMessage(item));
+      if (typeof dlg.showModal === "function") dlg.showModal(); else dlg.setAttribute("open", "");
+      document.body.classList.add("dialog-open");
+    }
+    function close() {
+      if (typeof dlg.close === "function") dlg.close(); else dlg.removeAttribute("open");
+    }
+
+    grid.addEventListener("click", function (e) {
+      if (e.target.closest(".card-link")) return;
+      var card = e.target.closest(".card");
+      var btn = card && card.querySelector(".card-open");
+      if (btn) openItem(Number(btn.getAttribute("data-open")), btn);
+    });
+    $("pd-close").addEventListener("click", close);
+    $("pd-close-2").addEventListener("click", close);
+    dlg.addEventListener("click", function (e) { if (e.target === dlg) close(); });
+    dlg.addEventListener("close", function () {
+      document.body.classList.remove("dialog-open");
+      if (lastTrigger) lastTrigger.focus();
+    });
+  }
+
   /* ---- Config wiring ---- */
   function refreshLinks() {
     document.querySelectorAll("[data-wa]").forEach(function (a) {
@@ -132,9 +187,7 @@ var STOCK = [
     });
     document.querySelectorAll("[data-ask]").forEach(function (a) {
       var item = STOCK[Number(a.getAttribute("data-ask"))];
-      a.href = waLink(lang === "ml"
-        ? "ഹലോ, " + item.ml + " (" + item.en + ") ലഭ്യമാണോ? / Hello, is " + item.en + " available?"
-        : "Hello, is " + item.en + " available?");
+      a.href = waLink(askMessage(item));
     });
   }
 
@@ -208,7 +261,11 @@ var STOCK = [
 
   function setupLang() {
     var t = document.getElementById("lang-toggle");
-    if (t) t.addEventListener("click", function () { setLang(lang === "en" ? "ml" : "en", true); });
+    if (!C.ENABLE_MALAYALAM) return; // Malayalam view is switched off: stay in English
+    if (t) {
+      t.hidden = false;
+      t.addEventListener("click", function () { setLang(lang === "en" ? "ml" : "en", true); });
+    }
     var saved = null;
     try { saved = localStorage.getItem("ppg-lang"); } catch (e) {}
     if (saved === "ml") setLang("ml", false);
@@ -218,4 +275,5 @@ var STOCK = [
   applyConfig();
   setupNav();
   setupLang();
+  setupDialog();
 })();
