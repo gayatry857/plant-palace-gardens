@@ -60,12 +60,15 @@ var STOCK = [
     if (text) n.textContent = text;
     return n;
   }
-  function configured(v) { return v && v !== "WHATSAPP_NUMBER"; }
+  
+  function messageFor(key) {
+    var m = (C.WHATSAPP_MESSAGES || {})[key] || (C.WHATSAPP_MESSAGES || {}).float;
+    if (!m) return "Hello";
+    return lang === "ml" ? m.ml + " / " + m.en : m.en;
+  }
 
   function waLink(message) {
-    var msg = message || (lang === "ml"
-      ? "ഹലോ, പ്ലാന്റ് പാലസ് ഗാർഡൻസിലെ ചെടികളെക്കുറിച്ച് അറിയാൻ ആഗ്രഹിക്കുന്നു. / Hello, I would like to ask about your plants."
-      : "Hello, I would like to ask about your plants.");
+    var msg = message || messageFor("float");
     return "https://wa.me/" + encodeURIComponent(C.WHATSAPP_NUMBER || "") + "?text=" + encodeURIComponent(msg);
   }
 
@@ -122,9 +125,8 @@ var STOCK = [
 
   /* ---- Config wiring ---- */
   function refreshLinks() {
-    var wa = waLink();
     document.querySelectorAll("[data-wa]").forEach(function (a) {
-      a.href = wa;
+      a.href = waLink(messageFor(a.getAttribute("data-wa")));
       a.target = "_blank";
       a.rel = "noopener";
     });

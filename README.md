@@ -18,7 +18,7 @@ images/                       logos, favicon, share image, plant photos (see ima
 
 All in the `SITE_CONFIG` block at the top of `index.html`:
 
-- `WHATSAPP_NUMBER`: digits only with country code, for example `919876543210`
+- `WHATSAPP_NUMBER` (set to 918590481440) and `WHATSAPP_MESSAGES` (the pre-filled text for each button)
 - `FACEBOOK_URL`
 - `OPENING_HOURS`
 - `GOOGLE_MAPS_EMBED_URL`: leave empty to use an address-search map

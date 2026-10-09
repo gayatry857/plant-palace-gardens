@@ -62,9 +62,10 @@ small { display: block; font-size: .78em; font-weight: 400; opacity: .9; }
   background: var(--forest-dark); color: var(--paper);
   border-bottom: 3px solid var(--gold);
 }
-.header-row { display: flex; align-items: center; justify-content: space-between; min-height: 64px; position: relative; }
+.header-row { display: flex; align-items: center; justify-content: space-between; min-height: 72px; padding-top: 6px; padding-bottom: 6px; position: relative; }
 .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--paper); }
-.brand-logo { height: 40px; width: auto; }
+.brand-logo { height: 48px; width: auto; max-width: 200px; object-fit: contain; }
+.brand.has-logo .brand-text { display: none; }
 .brand-name { display: block; font-family: var(--serif); font-weight: 700; font-size: 1.15rem; line-height: 1.1; }
 .site-header .label { color: var(--gold); font-size: .68rem; margin-top: 3px; }
 
@@ -264,6 +265,7 @@ html[data-lang="en"] .badge .en { margin-left: 0; }
   .site-nav ul { display: flex; gap: 8px; }
   .site-nav a { border: 0; padding: 8px 14px; text-align: center; border-radius: 8px; }
   .site-nav a:hover { background: rgba(238, 235, 220, .1); }
+  .brand-logo { height: 60px; max-width: 280px; }
   .hero { padding: 88px 0 96px; }
   .hero h1 { font-size: 3.2rem; }
   .section { padding: 80px 0; }

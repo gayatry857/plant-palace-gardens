@@ -30,16 +30,40 @@
        ===================================================================== -->
   <script>
     window.SITE_CONFIG = {
-      // TODO: WhatsApp number, digits only, with country code, no + or spaces. Example: 919876543210
-      WHATSAPP_NUMBER: "WHATSAPP_NUMBER",
+      // WhatsApp number: digits only, country code first, no + or spaces.
+      WHATSAPP_NUMBER: "918590481440",
 
       // TODO: full URL of the Facebook page
       FACEBOOK_URL: "https://www.facebook.com/plantpalacegardens",
 
       // TODO: opening and closing times. Each row is one line shown on the page.
       OPENING_HOURS: [
-        { days: "Every day", daysMl: "എല്ലാ ദിവസവും", time: "TODO: opening time - closing time" }
+        { days: "Monday to Saturday", daysMl: "തിങ്കൾ മുതൽ ശനി വരെ", time: "9:30 AM - 6:30 PM" }
       ],
+
+      // The text WhatsApp pre-fills depends on which button was tapped.
+      // Keys match the data-wa="..." attribute on each button in this file:
+      //   hero = top of page, visit = Visit us section, footer = Get in touch, float = floating button.
+      // Plant cards build their own message from the plant name (see app.js).
+      // en = English mode. ml = Malayalam mode (Malayalam line, then English).
+      WHATSAPP_MESSAGES: {
+        hero: {
+          en: "Hello, I found your website and would like to know more about the plants available at Plant Palace Gardens.",
+          ml: "ഹലോ, നിങ്ങളുടെ വെബ്സൈറ്റ് കണ്ടു. പ്ലാന്റ് പാലസ് ഗാർഡൻസിൽ ഇപ്പോൾ ലഭ്യമായ ചെടികളെക്കുറിച്ച് അറിയാൻ ആഗ്രഹിക്കുന്നു."
+        },
+        visit: {
+          en: "Hello, I am planning to visit the nursery in Aranmula. Could you tell me what is in stock right now?",
+          ml: "ഹലോ, ആറന്മുളയിലെ നഴ്സറിയിൽ വരാൻ ആലോചിക്കുന്നു. ഇപ്പോൾ എന്തൊക്കെ ചെടികൾ ലഭ്യമാണ്?"
+        },
+        footer: {
+          en: "Hello, I have a question for Plant Palace Gardens.",
+          ml: "ഹലോ, പ്ലാന്റ് പാലസ് ഗാർഡൻസിനോട് ഒരു കാര്യം ചോദിക്കാനുണ്ട്."
+        },
+        float: {
+          en: "Hello, I would like to ask about plants and seeds.",
+          ml: "ഹലോ, ചെടികളെയും വിത്തുകളെയും കുറിച്ച് ചോദിക്കാനുണ്ട്."
+        }
+      },
 
       // TODO: paste the src URL from Google Maps > Share > Embed a map.
       // Leave as "" to show a map found by searching the address below.
@@ -57,9 +81,9 @@
     <div class="wrap header-row">
       <a class="brand" href="#top" aria-label="Plant Palace Gardens, home">
         <!-- TODO: replace images/logo-horizontal.png with the real exported horizontal logo (about 480x120 px, transparent PNG or SVG).
-             The text wordmark beside it stays; hide it in styles.css (.brand-text) if the logo already includes the name.
+             Once this file loads, the text wordmark beside it is hidden automatically (the logo carries the name).
              The image hides itself until the file exists. -->
-        <img class="brand-logo" src="images/logo-horizontal.png" alt="Plant Palace Gardens logo" width="160" height="40" onerror="this.hidden=true">
+        <img class="brand-logo" src="images/logo-horizontal.png" alt="Plant Palace Gardens logo" onload="this.parentNode.classList.add('has-logo')" onerror="this.hidden=true">
         <span class="brand-text">
           <span class="brand-name">Plant Palace Gardens</span>
           <span class="label">Aranmula, Kerala</span>
@@ -98,7 +122,7 @@
         <p class="lead-en">Plants and seeds, grown and sold right here. Your plant nursery in Aranmula, near Pathanamthitta.</p>
 
         <div class="cta-row">
-          <a class="btn btn-primary" data-wa href="#">
+          <a class="btn btn-primary" data-wa="hero" href="#">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
             <span><span class="ml" lang="ml">വാട്സ്ആപ്പിൽ സന്ദേശം അയക്കൂ</span><small>Message us on WhatsApp</small></span>
           </a>
@@ -171,7 +195,7 @@
           <dl class="hours" id="hours"></dl>
 
           <div class="cta-row">
-            <a class="btn btn-primary" data-wa href="#">
+            <a class="btn btn-primary" data-wa="visit" href="#">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
               <span><span class="ml" lang="ml">വാട്സ്ആപ്പിൽ സന്ദേശം അയക്കൂ</span><small>Message us on WhatsApp</small></span>
             </a>
@@ -205,7 +229,7 @@
         <p class="ml" lang="ml">സന്ദേശം അയക്കാൻ മടിക്കേണ്ട. ഞങ്ങൾ മറുപടി നൽകാം.</p>
         <p class="en">Send us a message any time. We will reply.</p>
         <div class="cta-row">
-          <a class="btn btn-light" data-wa href="#">
+          <a class="btn btn-light" data-wa="footer" href="#">
             <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
             <span><span class="ml" lang="ml">വാട്സ്ആപ്പിൽ സന്ദേശം അയക്കൂ</span><small>Message us on WhatsApp</small></span>
           </a>
@@ -220,7 +244,7 @@
   </footer>
 
   <!-- Floating WhatsApp button, visible across the whole site -->
-  <a class="wa-float" data-wa href="#" aria-label="Message Plant Palace Gardens on WhatsApp">
+  <a class="wa-float" data-wa="float" href="#" aria-label="Message Plant Palace Gardens on WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
   </a>
 
