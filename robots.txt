@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gayatry857.github.io/plant-palace-gardens/sitemap.xml

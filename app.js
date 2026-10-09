@@ -209,6 +209,11 @@ var STOCK = [
     document.querySelectorAll("[data-address]").forEach(function (n) { n.textContent = C.ADDRESS || ""; });
     document.querySelectorAll("[data-address-ml]").forEach(function (n) { n.textContent = C.ADDRESS_ML || ""; });
 
+    document.querySelectorAll("[data-phone]").forEach(function (a) {
+      a.textContent = C.PHONE_DISPLAY || "";
+      a.href = "tel:" + (C.PHONE_LINK || "");
+    });
+
     var fb = document.getElementById("facebook");
     if (fb) fb.href = C.FACEBOOK_URL || "#";
 

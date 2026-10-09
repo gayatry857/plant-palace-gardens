@@ -4,13 +4,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Plant Palace Gardens | Plant Nursery in Aranmula, Kerala</title>
-  <meta name="description" content="Plant Palace Gardens is a small family nursery in Aranmula, near Pathanamthitta, Kerala. Flowering plants, potted plants, seedlings and seeds, grown and sold locally. Message us on WhatsApp or visit.">
+  <meta name="description" content="Family-run plant nursery in Aranmula, near Pathanamthitta, Kerala. Flowering plants, seedlings, potted plants and seeds. Message us on WhatsApp or visit.">
+  <!-- TODO: if you buy a custom domain, change every https://gayatry857.github.io/plant-palace-gardens/ URL in this file, robots.txt and sitemap.xml -->
+  <link rel="canonical" href="https://gayatry857.github.io/plant-palace-gardens/">
 
-  <!-- Open Graph. TODO: once the site is live, change og:image to the full URL, e.g. https://YOUR-USERNAME.github.io/REPO/images/og-image.jpg -->
+  <!-- Open Graph and Twitter preview tags (full URLs, as social sites require) -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Plant Palace Gardens | Plant Nursery in Aranmula, Kerala">
   <meta property="og:description" content="Plants and seeds, grown and sold locally in Aranmula. Message us on WhatsApp or visit the nursery.">
-  <meta property="og:image" content="images/og-image.jpg">
+  <meta property="og:url" content="https://gayatry857.github.io/plant-palace-gardens/">
+  <meta property="og:image" content="https://gayatry857.github.io/plant-palace-gardens/images/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Plant Palace Gardens | Plant Nursery in Aranmula, Kerala">
+  <meta name="twitter:description" content="Plants and seeds, grown and sold locally in Aranmula. Message us on WhatsApp or visit the nursery.">
+  <meta name="twitter:image" content="https://gayatry857.github.io/plant-palace-gardens/images/og-image.jpg">
   <meta property="og:locale" content="en_IN">
   <meta name="theme-color" content="#1F4430">
 
@@ -21,7 +28,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Noto+Sans+Malayalam:wght@400;600&family=Noto+Serif+Malayalam:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=2">
 
   <!-- =====================================================================
        CONFIG: every editable placeholder lives in this one block.
@@ -36,6 +43,10 @@
       // Malayalam view: switched off for now (English only, no language button).
       // Set to true to show the language button in the header again. All Malayalam text is still in the page.
       ENABLE_MALAYALAM: false,
+
+      // Phone number shown on the page (same number as WhatsApp). PHONE_LINK is digits for the tap-to-call link.
+      PHONE_DISPLAY: "+91 85904 81440",
+      PHONE_LINK: "+918590481440",
 
       // TODO: full URL of the Facebook page
       FACEBOOK_URL: "https://www.facebook.com/plantpalacegardens",
@@ -60,6 +71,34 @@
       ADDRESS: "Parumootumpadi, Thekkemala, Aranmula, Kerala 689533, India",
       ADDRESS_ML: "പരുമൂട്ടുംപടി, തെക്കേമല, ആറന്മുള, കേരളം 689533"
     };
+  </script>
+  <!-- Structured data so Google can show the nursery's address, phone and hours. Keep in step with SITE_CONFIG. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "GardenStore",
+    "name": "Plant Palace Gardens",
+    "description": "Family-run plant nursery in Aranmula, Kerala selling flowering plants, potted plants, seedlings and seeds.",
+    "url": "https://gayatry857.github.io/plant-palace-gardens/",
+    "image": "https://gayatry857.github.io/plant-palace-gardens/images/og-image.jpg",
+    "logo": "https://gayatry857.github.io/plant-palace-gardens/images/logo-square.png",
+    "telephone": "+918590481440",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Parumootumpadi, Thekkemala",
+      "addressLocality": "Aranmula",
+      "addressRegion": "Kerala",
+      "postalCode": "689533",
+      "addressCountry": "IN"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:30",
+      "closes": "18:30"
+    }],
+    "sameAs": ["https://www.facebook.com/plantpalacegardens"]
+  }
   </script>
 </head>
 <body>
@@ -100,8 +139,8 @@
       <div class="wrap hero-inner">
         <img class="hero-logo" src="images/logo-full.png" alt="Plant Palace Gardens logo: a traditional Kerala tiled-roof building framed by banana and palm leaves" width="640" height="391" onerror="this.hidden=true">
         <div class="hero-text">
-        <p class="label">Aranmula, Kerala</p>
         <h1 id="hero-title">
+          <span class="h1-sub label">Plant nursery in Aranmula, Kerala</span>
           <span class="ml" lang="ml">പ്ലാന്റ് പാലസ് ഗാർഡൻസ്</span>
           <span class="en">Plant Palace Gardens</span>
         </h1>
@@ -176,7 +215,8 @@
           <address class="address">
             <strong>Plant Palace Gardens</strong><br>
             <span class="ml" lang="ml" data-address-ml></span>
-            <span data-address></span>
+            <span data-address></span><br>
+            <a class="phone" data-phone href="#"></a>
           </address>
 
           <h3 class="hours-title"><span class="ml" lang="ml">തുറക്കുന്ന സമയം</span><span class="en">Opening hours</span></h3>
@@ -208,7 +248,7 @@
         <img class="footer-logo" src="images/logo-square.png" alt="Plant Palace Gardens round logo" width="80" height="80" onerror="this.hidden=true">
         <p class="footer-name">Plant Palace Gardens</p>
         <p class="label">Aranmula, Kerala</p>
-        <p class="footer-address" data-address></p>
+        <p class="footer-address"><span data-address></span><br><a class="phone" data-phone href="#"></a></p>
       </div>
       <div>
         <h2 class="footer-title"><span class="ml" lang="ml">ബന്ധപ്പെടാം</span><span class="en">Get in touch</span></h2>
@@ -256,6 +296,6 @@
     </div>
   </dialog>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>
