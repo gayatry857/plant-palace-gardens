@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +38,7 @@
 
       // TODO: opening and closing times. Each row is one line shown on the page.
       OPENING_HOURS: [
-        { days: "Every day / എല്ലാ ദിവസവും", time: "TODO: opening time - closing time" }
+        { days: "Every day", daysMl: "എല്ലാ ദിവസവും", time: "TODO: opening time - closing time" }
       ],
 
       // TODO: paste the src URL from Google Maps > Share > Embed a map.
@@ -66,9 +66,13 @@
         </span>
       </a>
 
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-        <span class="bars" aria-hidden="true"></span>
-      </button>
+      <div class="header-actions">
+        <!-- Language switch: English by default. The button shows the language you can switch TO. -->
+        <button class="lang-toggle" id="lang-toggle" type="button" lang="ml" aria-label="View this site in Malayalam">മലയാളം</button>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span class="bars" aria-hidden="true"></span>
+        </button>
+      </div>
 
       <nav id="site-nav" class="site-nav" aria-label="Main">
         <ul>
@@ -159,7 +163,7 @@
 
           <address class="address">
             <strong>Plant Palace Gardens</strong><br>
-            <span lang="ml" data-address-ml></span><br>
+            <span class="ml" lang="ml" data-address-ml></span>
             <span data-address></span>
           </address>
 

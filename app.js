@@ -52,6 +52,7 @@ var STOCK = [
 (function () {
   "use strict";
   var C = window.SITE_CONFIG || {};
+  var lang = "en"; // "en" (default) or "ml"
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
@@ -62,8 +63,9 @@ var STOCK = [
   function configured(v) { return v && v !== "WHATSAPP_NUMBER"; }
 
   function waLink(message) {
-    var msg = message ||
-      "ഹലോ, പ്ലാന്റ് പാലസ് ഗാർഡൻസിലെ ചെടികളെക്കുറിച്ച് അറിയാൻ ആഗ്രഹിക്കുന്നു. / Hello, I would like to ask about your plants.";
+    var msg = message || (lang === "ml"
+      ? "ഹലോ, പ്ലാന്റ് പാലസ് ഗാർഡൻസിലെ ചെടികളെക്കുറിച്ച് അറിയാൻ ആഗ്രഹിക്കുന്നു. / Hello, I would like to ask about your plants."
+      : "Hello, I would like to ask about your plants.");
     return "https://wa.me/" + encodeURIComponent(C.WHATSAPP_NUMBER || "") + "?text=" + encodeURIComponent(msg);
   }
 
@@ -85,9 +87,10 @@ var STOCK = [
       img.onerror = function () { img.hidden = true; };
       media.appendChild(img);
       if (item.available) {
-        var badge = el("span", "badge", "ഇപ്പോൾ ലഭ്യം");
-        badge.lang = "ml";
-        badge.appendChild(el("small", null, "In stock now"));
+        var badge = el("span", "badge");
+        var bml = el("span", "ml", "ഇപ്പോൾ ലഭ്യം"); bml.lang = "ml";
+        badge.appendChild(bml);
+        badge.appendChild(el("span", "en", "In stock now"));
         media.appendChild(badge);
       }
       li.appendChild(media);
@@ -103,11 +106,12 @@ var STOCK = [
       body.appendChild(el("p", "en", item.descEn));
 
       var a = el("a", "card-link");
-      a.href = waLink("ഹലോ, " + item.ml + " (" + item.en + ") ലഭ്യമാണോ? / Hello, is " + item.en + " available?");
-      a.setAttribute("data-wa-custom", "");
-      var aml = el("span", null, "ചോദിക്കൂ"); aml.lang = "ml";
+      a.setAttribute("data-ask", String(STOCK.indexOf(item)));
+      a.target = "_blank";
+      a.rel = "noopener";
+      var aml = el("span", "ml", "ചോദിക്കൂ /"); aml.lang = "ml";
       a.appendChild(aml);
-      a.appendChild(document.createTextNode(" / Ask about this"));
+      a.appendChild(el("span", "en", "Ask about this"));
       a.setAttribute("aria-label", "Ask about " + item.en + " on WhatsApp");
       body.appendChild(a);
 
@@ -117,13 +121,36 @@ var STOCK = [
   }
 
   /* ---- Config wiring ---- */
-  function applyConfig() {
+  function refreshLinks() {
     var wa = waLink();
     document.querySelectorAll("[data-wa]").forEach(function (a) {
       a.href = wa;
       a.target = "_blank";
       a.rel = "noopener";
     });
+    document.querySelectorAll("[data-ask]").forEach(function (a) {
+      var item = STOCK[Number(a.getAttribute("data-ask"))];
+      a.href = waLink(lang === "ml"
+        ? "ഹലോ, " + item.ml + " (" + item.en + ") ലഭ്യമാണോ? / Hello, is " + item.en + " available?"
+        : "Hello, is " + item.en + " available?");
+    });
+  }
+
+  function renderHours() {
+    var hours = document.getElementById("hours");
+    if (!hours) return;
+    hours.textContent = "";
+    (C.OPENING_HOURS || []).forEach(function (row) {
+      var d = el("div");
+      d.appendChild(el("dt", null, lang === "ml" && row.daysMl ? row.daysMl + " / " + row.days : row.days));
+      d.appendChild(el("dd", null, row.time));
+      hours.appendChild(d);
+    });
+  }
+
+  function applyConfig() {
+    refreshLinks();
+    renderHours();
     document.querySelectorAll("[data-address]").forEach(function (n) { n.textContent = C.ADDRESS || ""; });
     document.querySelectorAll("[data-address-ml]").forEach(function (n) { n.textContent = C.ADDRESS_ML || ""; });
 
@@ -137,15 +164,6 @@ var STOCK = [
     var map = document.getElementById("map");
     if (map) map.src = C.GOOGLE_MAPS_EMBED_URL || ("https://maps.google.com/maps?q=" + query + "&output=embed");
 
-    var hours = document.getElementById("hours");
-    if (hours) {
-      (C.OPENING_HOURS || []).forEach(function (row) {
-        var d = el("div");
-        d.appendChild(el("dt", null, row.days));
-        d.appendChild(el("dd", null, row.time));
-        hours.appendChild(d);
-      });
-    }
     var year = document.getElementById("year");
     if (year) year.textContent = new Date().getFullYear();
   }
@@ -165,7 +183,37 @@ var STOCK = [
     document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
   }
 
+  /* ---- Language switch (English default, Malayalam optional) ---- */
+  function setLang(next, save) {
+    lang = next;
+    document.documentElement.setAttribute("data-lang", lang);
+    var t = document.getElementById("lang-toggle");
+    if (t) {
+      if (lang === "en") {
+        t.textContent = "മലയാളം";
+        t.lang = "ml";
+        t.setAttribute("aria-label", "View this site in Malayalam");
+      } else {
+        t.textContent = "English";
+        t.lang = "en";
+        t.setAttribute("aria-label", "View this site in English");
+      }
+    }
+    refreshLinks();
+    renderHours();
+    if (save) { try { localStorage.setItem("ppg-lang", lang); } catch (e) {} }
+  }
+
+  function setupLang() {
+    var t = document.getElementById("lang-toggle");
+    if (t) t.addEventListener("click", function () { setLang(lang === "en" ? "ml" : "en", true); });
+    var saved = null;
+    try { saved = localStorage.getItem("ppg-lang"); } catch (e) {}
+    if (saved === "ml") setLang("ml", false);
+  }
+
   renderStock();
   applyConfig();
   setupNav();
+  setupLang();
 })();

@@ -25,6 +25,7 @@ body {
 }
 :lang(ml) { font-family: "Noto Sans Malayalam", var(--sans); line-height: 1.7; }
 img { max-width: 100%; display: block; }
+[hidden] { display: none !important; }
 a { color: var(--forest); }
 h1, h2, h3 { font-family: var(--serif); color: var(--forest-dark); line-height: 1.2; margin: 0; }
 h1 :lang(ml), h2 :lang(ml), h3 :lang(ml),
@@ -213,6 +214,41 @@ small { display: block; font-size: .78em; font-weight: 400; opacity: .9; }
 .wa-float svg { width: 28px; height: 28px; }
 .wa-float:hover { background: var(--forest-dark); }
 
+/* Language switch */
+.header-actions { display: flex; align-items: center; gap: 6px; }
+.lang-toggle {
+  min-height: 44px; padding: 0 16px; border-radius: 999px; cursor: pointer;
+  background: transparent; color: var(--paper);
+  border: 2px solid var(--gold);
+  font-family: "Noto Sans Malayalam", var(--sans); font-size: .95rem; font-weight: 600;
+}
+.lang-toggle:hover { background: rgba(238, 235, 220, .12); }
+
+/* English mode (default): hide Malayalam, let the English line be the primary text */
+html[data-lang="en"] .ml,
+html[data-lang="en"] [lang="ml"] { display: none !important; }
+html[data-lang="en"] .lang-toggle { display: inline-block !important; }
+html[data-lang="en"] small { font-size: 1em; opacity: 1; }
+html[data-lang="en"] h1 .en,
+html[data-lang="en"] h2 .en,
+html[data-lang="en"] h3 .en {
+  font-size: 1em; font-style: normal; font-weight: inherit; color: inherit; margin-top: 0;
+}
+html[data-lang="en"] .hero h1 .en { font-size: 1em; }
+html[data-lang="en"] .hours-title .en { font-size: 1em; }
+html[data-lang="en"] .section-head .en,
+html[data-lang="en"] .card-body .en,
+html[data-lang="en"] .tips .en { color: var(--ink); font-size: 1em; }
+html[data-lang="en"] .lead-en { color: var(--ink); font-size: 1.2rem; margin-top: 20px; }
+html[data-lang="en"] .site-footer .en { color: var(--paper); font-size: 1em; }
+html[data-lang="en"] .site-nav small { color: var(--paper); }
+html[data-lang="en"] .badge .en { margin-left: 0; }
+
+/* Inline bilingual bits */
+.badge .ml, .badge .en, .card-link .ml, .card-link .en { display: inline; }
+.badge .en { margin-left: 6px; font-size: .85em; color: inherit; }
+.card-link .ml { margin-right: .35em; }
+
 /* Wider screens */
 @media (min-width: 640px) {
   .cta-row { flex-direction: row; flex-wrap: wrap; }
@@ -223,7 +259,8 @@ small { display: block; font-size: .78em; font-weight: 400; opacity: .9; }
 @media (min-width: 900px) {
   .wrap { padding: 0 24px; }
   .nav-toggle { display: none; }
-  .site-nav { display: block; position: static; background: none; padding: 0; border: 0; }
+  .header-actions { order: 3; }
+  .site-nav { order: 2; display: block; position: static; background: none; padding: 0; border: 0; }
   .site-nav ul { display: flex; gap: 8px; }
   .site-nav a { border: 0; padding: 8px 14px; text-align: center; border-radius: 8px; }
   .site-nav a:hover { background: rgba(238, 235, 220, .1); }
