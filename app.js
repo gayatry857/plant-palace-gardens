@@ -61,14 +61,14 @@ var STOCK = [
     return n;
   }
   
-  function messageFor(key) {
-    var m = (C.WHATSAPP_MESSAGES || {})[key] || (C.WHATSAPP_MESSAGES || {}).float;
+  function messageFor() {
+    var m = C.WHATSAPP_MESSAGE;
     if (!m) return "Hello";
     return lang === "ml" ? m.ml + " / " + m.en : m.en;
   }
 
   function waLink(message) {
-    var msg = message || messageFor("float");
+    var msg = message || messageFor();
     return "https://wa.me/" + encodeURIComponent(C.WHATSAPP_NUMBER || "") + "?text=" + encodeURIComponent(msg);
   }
 
@@ -126,7 +126,7 @@ var STOCK = [
   /* ---- Config wiring ---- */
   function refreshLinks() {
     document.querySelectorAll("[data-wa]").forEach(function (a) {
-      a.href = waLink(messageFor(a.getAttribute("data-wa")));
+      a.href = waLink();
       a.target = "_blank";
       a.rel = "noopener";
     });
