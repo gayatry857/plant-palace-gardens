@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Plant Palace Gardens | Plant Nursery in Aranmula, Kerala</title>
+  <meta name="description" content="Plant Palace Gardens is a small family nursery in Aranmula, near Pathanamthitta, Kerala. Flowering plants, potted plants, seedlings and seeds, grown and sold locally. Message us on WhatsApp or visit.">
+
+  <!-- Open Graph. TODO: once the site is live, change og:image to the full URL, e.g. https://YOUR-USERNAME.github.io/REPO/images/og-image.jpg -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Plant Palace Gardens | Plant Nursery in Aranmula, Kerala">
+  <meta property="og:description" content="Plants and seeds, grown and sold locally in Aranmula. Message us on WhatsApp or visit the nursery.">
+  <meta property="og:image" content="images/og-image.jpg">
+  <meta property="og:locale" content="en_IN">
+  <meta name="theme-color" content="#1F4430">
+
+  <!-- TODO: favicon files. Drop the real square/circular logo crop in images/ with these names. -->
+  <link rel="icon" href="images/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="images/favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=Noto+Sans+Malayalam:wght@400;600&family=Noto+Serif+Malayalam:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- =====================================================================
+       CONFIG: every editable placeholder lives in this one block.
+       Find the lines marked TODO and replace the values. Nothing else in
+       the markup needs hunting through.
+       ===================================================================== -->
+  <script>
+    window.SITE_CONFIG = {
+      // TODO: WhatsApp number, digits only, with country code, no + or spaces. Example: 919876543210
+      WHATSAPP_NUMBER: "WHATSAPP_NUMBER",
+
+      // TODO: full URL of the Facebook page
+      FACEBOOK_URL: "https://www.facebook.com/plantpalacegardens",
+
+      // TODO: opening and closing times. Each row is one line shown on the page.
+      OPENING_HOURS: [
+        { days: "Every day / എല്ലാ ദിവസവും", time: "TODO: opening time - closing time" }
+      ],
+
+      // TODO: paste the src URL from Google Maps > Share > Embed a map.
+      // Leave as "" to show a map found by searching the address below.
+      GOOGLE_MAPS_EMBED_URL: "",
+
+      ADDRESS: "Parumootumpadi, Thekkemala, Aranmula, Kerala 689533, India",
+      ADDRESS_ML: "പരുമൂട്ടുംപടി, തെക്കേമല, ആറന്മുള, കേരളം 689533"
+    };
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="wrap header-row">
+      <a class="brand" href="#top" aria-label="Plant Palace Gardens, home">
+        <!-- TODO: replace images/logo-horizontal.png with the real exported horizontal logo (about 480x120 px, transparent PNG or SVG).
+             The text wordmark beside it stays; hide it in styles.css (.brand-text) if the logo already includes the name.
+             The image hides itself until the file exists. -->
+        <img class="brand-logo" src="images/logo-horizontal.png" alt="Plant Palace Gardens logo" width="160" height="40" onerror="this.hidden=true">
+        <span class="brand-text">
+          <span class="brand-name">Plant Palace Gardens</span>
+          <span class="label">Aranmula, Kerala</span>
+        </span>
+      </a>
+
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="bars" aria-hidden="true"></span>
+      </button>
+
+      <nav id="site-nav" class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="#grow"><span lang="ml">ചെടികൾ</span><small>Plants</small></a></li>
+          <li><a href="#care"><span lang="ml">പരിപാലനം</span><small>Care tips</small></a></li>
+          <li><a href="#visit"><span lang="ml">വരൂ</span><small>Visit</small></a></li>
+          <li><a href="#contact"><span lang="ml">ബന്ധപ്പെടാം</span><small>Contact</small></a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="wrap hero-inner">
+        <p class="label">Aranmula, Kerala</p>
+        <h1 id="hero-title">
+          <span class="ml" lang="ml">പ്ലാന്റ് പാലസ് ഗാർഡൻസ്</span>
+          <span class="en">Plant Palace Gardens</span>
+        </h1>
+        <p class="lead ml" lang="ml">ചെടികളും വിത്തുകളും ഇവിടെത്തന്നെ വളർത്തി, ഇവിടെത്തന്നെ വിൽക്കുന്നു. ആറന്മുളയിലെ നിങ്ങളുടെ ചെടി നഴ്സറി.</p>
+        <p class="lead-en">Plants and seeds, grown and sold right here. Your plant nursery in Aranmula, near Pathanamthitta.</p>
+
+        <div class="cta-row">
+          <a class="btn btn-primary" data-wa href="#">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
+            <span><span class="ml" lang="ml">വാട്സ്ആപ്പിൽ സന്ദേശം അയക്കൂ</span><small>Message us on WhatsApp</small></span>
+          </a>
+          <a class="btn btn-ghost" href="#visit">
+            <span><span class="ml" lang="ml">കടയിലേക്ക് വരൂ</span><small>Visit us</small></span>
+          </a>
+        </div>
+        <p class="hero-address" data-address></p>
+      </div>
+    </section>
+
+    <!-- WHAT WE GROW -->
+    <section class="section" id="grow" aria-labelledby="grow-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="grow-title"><span class="ml" lang="ml">ഞങ്ങളുടെ ചെടികൾ</span><span class="en">What we grow</span></h2>
+          <p class="ml" lang="ml">സീസൺ അനുസരിച്ച് ചെടികൾ മാറിക്കൊണ്ടിരിക്കും. ഇപ്പോഴത്തെ ലഭ്യത അറിയാൻ വാട്സ്ആപ്പിൽ ചോദിക്കൂ.</p>
+          <p class="en">What we have changes with the season. Ask on WhatsApp for what is available now.</p>
+        </header>
+        <!-- Cards are rendered from the STOCK array in app.js -->
+        <ul class="grid" id="stock-grid"></ul>
+      </div>
+    </section>
+
+    <!-- CARE TIPS -->
+    <section class="section section-tint" id="care" aria-labelledby="care-title">
+      <div class="wrap">
+        <header class="section-head">
+          <h2 id="care-title"><span class="ml" lang="ml">ചെടി പരിപാലനം</span><span class="en">Simple care tips</span></h2>
+          <p class="ml" lang="ml">പുതിയ ചെടി വീട്ടിലെത്തിയാൽ ഈ മൂന്ന് കാര്യങ്ങൾ ശ്രദ്ധിക്കൂ.</p>
+          <p class="en">Three things to keep in mind once a new plant comes home.</p>
+        </header>
+        <ol class="tips">
+          <li>
+            <h3><span class="ml" lang="ml">വെയിൽ</span><span class="en">Sunlight</span></h3>
+            <p class="ml" lang="ml">പെറ്റൂണിയ പോലുള്ള പൂച്ചെടികൾക്ക് ദിവസവും ഏകദേശം ആറ് മണിക്കൂർ വെയിൽ വേണം. വെയിൽ കുറഞ്ഞാൽ പൂക്കൾ കുറയും.</p>
+            <p class="en">Flowering plants like petunias need about six hours of sun a day. With less light, you get fewer flowers.</p>
+          </li>
+          <li>
+            <h3><span class="ml" lang="ml">നനയ്ക്കൽ</span><span class="en">Watering</span></h3>
+            <p class="ml" lang="ml">നനയ്ക്കുന്നതിന് മുൻപ് മണ്ണ് തൊട്ടുനോക്കൂ. മുകളിലെ മണ്ണ് ഉണങ്ങിയാൽ മാത്രം നനയ്ക്കുക. ചട്ടിയിൽ വെള്ളം കെട്ടിനിൽക്കരുത്.</p>
+            <p class="en">Touch the soil before you water. Water only when the top layer is dry, and never leave water standing in the pot.</p>
+          </li>
+          <li>
+            <h3><span class="ml" lang="ml">വാടിയ പൂക്കൾ</span><span class="en">Spent flowers</span></h3>
+            <p class="ml" lang="ml">വാടിയ പൂക്കൾ ഇടയ്ക്കിടെ നുള്ളിക്കളയൂ. പുതിയ മൊട്ടുകൾ വരാൻ ഇത് സഹായിക്കും.</p>
+            <p class="en">Pinch off faded flowers now and then. It helps the plant make new buds.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- VISIT US -->
+    <section class="section" id="visit" aria-labelledby="visit-title">
+      <div class="wrap visit-grid">
+        <div>
+          <header class="section-head">
+            <h2 id="visit-title"><span class="ml" lang="ml">കടയിലേക്ക് വരൂ</span><span class="en">Visit us</span></h2>
+            <p class="ml" lang="ml">ആറന്മുളയിലെ ഞങ്ങളുടെ നഴ്സറിയിൽ വന്ന് ചെടികൾ നേരിട്ട് കണ്ട് തിരഞ്ഞെടുക്കാം.</p>
+            <p class="en">Come to our nursery in Aranmula and pick your plants in person.</p>
+          </header>
+
+          <address class="address">
+            <strong>Plant Palace Gardens</strong><br>
+            <span lang="ml" data-address-ml></span><br>
+            <span data-address></span>
+          </address>
+
+          <h3 class="hours-title"><span class="ml" lang="ml">തുറക്കുന്ന സമയം</span><span class="en">Opening hours</span></h3>
+          <dl class="hours" id="hours"></dl>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" data-wa href="#">
+              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
+              <span><span class="ml" lang="ml">വാട്സ്ആപ്പിൽ സന്ദേശം അയക്കൂ</span><small>Message us on WhatsApp</small></span>
+            </a>
+            <a class="btn btn-ghost" id="directions" href="#" target="_blank" rel="noopener">
+              <span><span class="ml" lang="ml">വഴി അറിയാൻ</span><small>Get directions</small></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <!-- TODO: the real embed URL goes in CONFIG (GOOGLE_MAPS_EMBED_URL) at the top of this file.
+               app.js fills in the src below. -->
+          <iframe id="map" title="Map showing Plant Palace Gardens in Aranmula, Kerala" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="wrap footer-grid">
+      <div>
+        <!-- TODO: replace images/logo-square.png with the real square or circular logo crop (about 160x160 px).
+             The image hides itself until the file exists. -->
+        <img class="footer-logo" src="images/logo-square.png" alt="Plant Palace Gardens round logo" width="80" height="80" onerror="this.hidden=true">
+        <p class="footer-name">Plant Palace Gardens</p>
+        <p class="label">Aranmula, Kerala</p>
+        <p class="footer-address" data-address></p>
+      </div>
+      <div>
+        <h2 class="footer-title"><span class="ml" lang="ml">ബന്ധപ്പെടാം</span><span class="en">Get in touch</span></h2>
+        <p class="ml" lang="ml">സന്ദേശം അയക്കാൻ മടിക്കേണ്ട. ഞങ്ങൾ മറുപടി നൽകാം.</p>
+        <p class="en">Send us a message any time. We will reply.</p>
+        <div class="cta-row">
+          <a class="btn btn-light" data-wa href="#">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
+            <span><span class="ml" lang="ml">വാട്സ്ആപ്പിൽ സന്ദേശം അയക്കൂ</span><small>Message us on WhatsApp</small></span>
+          </a>
+          <a class="btn btn-outline-light" id="facebook" href="#" target="_blank" rel="noopener">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8V6.5c0-.8.2-1.2 1.3-1.2H17V2h-2.6C11.4 2 10 3.7 10 6.2V8H8v3.3h2V22h4V11.3h2.7L17 8z" fill="currentColor"/></svg>
+            <span>Facebook</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <p class="wrap copyright">&copy; <span id="year"></span> Plant Palace Gardens, Aranmula</p>
+  </footer>
+
+  <!-- Floating WhatsApp button, visible across the whole site -->
+  <a class="wa-float" data-wa href="#" aria-label="Message Plant Palace Gardens on WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-5 4v-4H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="currentColor"/></svg>
+  </a>
+
+  <script src="app.js"></script>
+</body>
+</html>
